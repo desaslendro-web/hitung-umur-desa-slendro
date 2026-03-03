@@ -84,7 +84,7 @@
     <label>Tanggal Lahir</label>
     <input type="date" id="tglLahir">
 
-    <label>Tanggal Hitung (Opsional)</label>
+    <label>Tanggal Hitung (Opsional/kosongkan untuk menghitung per hari ini)</label>
     <input type="date" id="tglTarget">
 
     <button onclick="hitungUmur()">Hitung Umur</button>
@@ -131,10 +131,10 @@ function hitungUmur() {
     let teksTanggal = targetVal ? targetVal : "hari ini";
 
     hasil.innerHTML = 
-        "Umur sampai " + teksTanggal + ":<br>" +
-        tahun + " Tahun, " +
+        "Umur pada tangggal : " + teksTanggal + ":<br>" +
+        hari + " Hari, " +
         bulan + " Bulan, " +
-        hari + " Hari";
+        tahun + " Tahun";
 }
 </script>
 
