@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Umur - Desa Slendro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0d6efd, #198754);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 340px;
+        }
+        .logo {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin: 10px 0;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0b5ed7;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .footer {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <!-- Ganti file logo_desa_slendro.png dengan logo asli desa -->
+    <img src="logo_desa_slendro.png" class="logo" alt="Logo Desa Slendro">
+
+    <h2>Alat Hitung Umur</h2>
+    <div class="subtitle">Pemerintah Desa Slendro</div>
+
+    <input type="date" id="tglLahir">
+    <button onclick="hitungUmur()">Hitung Umur</button>
+    <div class="result" id="hasil"></div>
+
+    <div class="footer">© 2026 Desa Slendro</div>
+</div>
+
+<script>
+function hitungUmur() {
+    const input = document.getElementById("tglLahir").value;
+    if (!input) {
+        document.getElementById("hasil").innerHTML = "Silakan pilih tanggal lahir.";
+        return;
+    }
+
+    const tglLahir = new Date(input);
+    const sekarang = new Date();
+
+    if (tglLahir > sekarang) {
+        document.getElementById("hasil").innerHTML = "Tanggal lahir tidak valid.";
+        return;
+    }
+
+    let tahun = sekarang.getFullYear() - tglLahir.getFullYear();
+    let bulan = sekarang.getMonth() - tglLahir.getMonth();
+    let hari = sekarang.getDate() - tglLahir.getDate();
+
+    if (hari < 0) {
+        bulan--;
+        const lastMonth = new Date(sekarang.getFullYear(), sekarang.getMonth(), 0);
+        hari += lastMonth.getDate();
+    }
+
+    if (bulan < 0) {
+        tahun--;
+        bulan += 12;
+    }
+
+    document.getElementById("hasil").innerHTML =
+        "Umur: " + tahun + " Tahun, " + bulan + " Bulan, " + hari + " Hari";
+}
+</script>
+
+</body>
+</html>
