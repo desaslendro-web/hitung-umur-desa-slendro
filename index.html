@@ -84,7 +84,7 @@
     <label>Tanggal Lahir</label>
     <input type="date" id="tglLahir">
 
-    <label>Tanggal Hitung (Opsional/kosongkan untuk menghitung per hari ini)</label>
+    <label>Tanggal Hitung (Opsional)</label>
     <input type="date" id="tglTarget">
 
     <button onclick="hitungUmur()">Hitung Umur</button>
@@ -128,13 +128,19 @@ function hitungUmur() {
         bulan += 12;
     }
 
-    let teksTanggal = targetVal ? targetVal : "hari ini";
+    // Format tanggal Indonesia
+const formatIndonesia = tanggalAcuan.toLocaleDateString("id-ID", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+});
 
-    hasil.innerHTML = 
-        "Umur pada tangggal : " + teksTanggal + ":<br>" +
-        hari + " Hari, " +
-        bulan + " Bulan, " +
-        tahun + " Tahun";
+hasil.innerHTML = 
+    "Umur pada tanggal : " + formatIndonesia + ":<br>" +
+    tahun + " Tahun, " +
+    bulan + " Bulan, " +
+    hari + " Hari";
 }
 </script>
 
